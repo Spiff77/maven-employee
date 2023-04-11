@@ -1,10 +1,10 @@
 package com.mycompany.app.model;
 
+import com.mysql.cj.exceptions.WrongArgumentException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class CalculatorTest {
 
@@ -17,10 +17,18 @@ class CalculatorTest {
 
     @Test
     void addition() {
-        int nb1=5, nb2=5;
+        int nb1=2, nb2=2;
 
         int result = calculator.addition(nb1, nb2);
         Assertions.assertEquals(result, nb1 + nb2, "Addition of " + nb1 +" + "+ nb2);
+    }
+
+    //Junit 4
+    @Test
+    @DisplayName("Addition throwing exception because of a wrong parameter")
+    void additionWithWrongParameter() {
+        int nb1=5, nb2=5;
+        Assertions.assertThrows(WrongArgumentException.class,() -> calculator.addition(nb1, nb2));
     }
 
     @Test
